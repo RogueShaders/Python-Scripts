@@ -1,14 +1,9 @@
 import csv
 import os
 
-try:
-    file = open("leads.csv")
-except FileNotFoundError:
-    os.chdir("Day1")
-finally:
-    file = open("leads.csv")
+os.chdir("Day1")
 
-reader = csv.reader(file)
-
-for line in reader:
-    print("Name: " + str(line[0]) +" | Email: "+ str(line[1])+ " | Budget: " + str(line[2]))
+with open("leads.csv", newline="") as file:
+    reader = csv.DictReader(file)
+    for row in reader:
+        print(f"Name: {row['Name']} | Email: {row['Email']} | Budget: {row['Budget']}")
